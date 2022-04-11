@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <sys/stat.h>
+#include <limits.h>
+#include <errno.h>
 
 int seenFiles=0;
 
