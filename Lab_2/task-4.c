@@ -5,7 +5,9 @@ int main(int argc,char* argv[])
 {
     if (argc!=3)
     {
-        fprintf(stderr,"Unexpected number of parameters\n");
+        fprintf(stderr,"Unexpected number of parameters\n.Comman format:Command format:%s filename_1 filename_2 \n",argv[0]);
+        fprintf(stderr,"filename_1 - name of file to read\n");
+        fprintf(stderr,"filename_2 - name of file to write\n");
         return 1;
     }
     char* filename_1=argv[1];
