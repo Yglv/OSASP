@@ -55,15 +55,36 @@ int CheckDir(char* name,int min,int max,FILE* file)
     return 0;
 }
 
+long stringToLong(char *num) {
+    char *endptr;
+    long result= strtol(num, &endptr, 10);
+
+    if ((errno == ERANGE && (res == LONG_MAX || res == LONG_MIN))
+        || (errno != 0 && result == 0)) {
+        perror("strtol");
+        exit(EXIT_FAILURE);
+    }
+
+    if (endptr == num) {
+        fprintf(stderr, "No digits were found\n");
+        exit(EXIT_FAILURE);
+    }
+    return result;
+}
+
 int main(int argc,char *argv[])
 {
     if (argc!=5)
     {
-        fprintf(stderr,"Unexpected number of parameters\n");
+        fprintf(stderr,"Unexpected number of parameters\n.Command format:%s dirname min max filename",argv[0]);
+        fprintf(stderr,"dirname- name of directory to read\n");
+        fprintf(stderr,"min - min size of files\n");
+        fprintf(stderr,"max - max size of files\n");
+        fprintf(stderr,"filename - name of file to write result\n");
         return 1;
     }
-    int min=strtoll(argv[2],(char**)NULL,10);
-    int max=strtoll(argv[3],(char**)NULL,10);
+    int min=stringToLong(argv[2]);
+    int max=stringToLong(argv[3]);
     FILE* f=fopen(argv[4],"w");
     if (!f)
     {
