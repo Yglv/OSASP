@@ -93,6 +93,7 @@ int main(int argc,char *argv[])
         perror("fopen()");
         return 1;
     }
+    char* name=(char *)malloc(sizeof(char) * PATH_MAX );
     char* name=argv[1];
     CheckDir(name,min,max,f);
     printf("Seen files:%d\n",seenFiles);
