@@ -16,15 +16,15 @@ int main()
             case 0:
             {
                 struct timeval time;
-                struct tm *today;
+                struct tm *local;
                 gettimeofday(&time,NULL);
-                today=localtime(&time.tv_sec);
+                local=localtime(&time.tv_sec);
                 printf("PID:%d\tPPID:%d\tTime:%d:%0d:%0d:%ld\n",
                    getpid(),
                    getppid(),
-                   today->tm_hour,
-                   today->tm_min,
-                   today->tm_sec,
+                   local->tm_hour,
+                   local->tm_min,
+                   local->tm_sec,
                    time.tv_usec
                 );
                 exit(EXIT_SUCCESS);
